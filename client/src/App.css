@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+.show.dropdown-menu {
+  display: block;
+  position: absolute;
+}
+.dropdown-menu {
+    border: none !important;
+    /* etc... */
+}
+.mine {
+  background:#f3f3f3;
+  length: 100%;
+  padding: 2px 4px 0 6px;;
+}
+.search-link a{
+  link:red;
+}
+.heraw{
+  border-radius: 4px;
+  width:25%;
+  text-size: 24px;
+}
