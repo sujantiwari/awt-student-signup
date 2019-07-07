@@ -18,6 +18,11 @@ import 'bootstrap/dist/js/bootstrap.js';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Admin from './components/Admin';
+import Admin_Panel from './components/Admin_Panel';
+import AdminPanel from './components/AdminPanel';
+import MainAdminPanel from './components/MainAdminPanel';
+import ProjectForm from './components/ProjectForm';
 
 class App extends Component {
   state={
@@ -43,9 +48,14 @@ class App extends Component {
               <Route exact path='/' component={Home} />
               <Route exact path='/about' component={About} />
               <Route exact path='/category1' component={Category1} />
-              <Route exact path='/contact' component={Contact} />
+              <Route exact path='/adminpanel' component={AdminPanel} />
+              <Route exact path='/admin' component={Admin} />
               <Route exact path='/topic1' component={Topic1} />
+              <Route exact path='/admin_panel' component={Admin_Panel} />
+              <Route exact path='/main_admin_panel' component={MainAdminPanel} />
+              <Route exact path='/add_new_project' component={ProjectForm} />
               <Route exact path='/register' component={Register} />
+              
           </Switch>
           </div>
           <div class="col-sm-2 mine">

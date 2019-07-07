@@ -18,7 +18,10 @@ export class MenuAppBar extends React.Component{
                 <NavLink to={'/about'} activeStyle={{color:'red'}} className="nav-link"> About </NavLink>
               </li>
               <li class="nav-item">
-                <Link to={'/contact'} className="nav-link"> Contact </Link>
+                <Link to={'/adminpanel'} className="nav-link"> Contact </Link>
+              </li>
+              <li class="nav-item">
+                <Link to={'/admin'} className="nav-link"> Admin </Link>
               </li>
             </ul>
           </nav>
