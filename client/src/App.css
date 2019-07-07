@@ -31,3 +31,173 @@
     transform: rotate(360deg);
   }
 }
+
+.show.dropdown-menu {
+  display: block;
+  position: absolute;
+}
+.dropdown-menu {
+    border: none !important;
+    /* etc... */
+}
+.mine {
+  background:#f3f3f3;
+  length: 100%;
+  padding: 2px 4px 0 6px;;
+}
+.search-link a{
+  link:red;
+}
+.heraw{
+  border-radius: 4px;
+  width:25%;
+  font-size: 24px;
+}
+.heidi{
+  border: 2px solid;
+  padding: 6px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  background-color: gray;
+  border-radius: 4px;
+  color: white;
+}
+.heidi:hover{
+  background-color: skyblue;
+  color:white;
+}
+.heidi_3{
+  padding: 12px 45px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 550;
+  background-color:whitesmoke;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.heidi_3:hover{
+  background-color:gray;
+  color:darkturquoise;
+}
+.heidi:active{
+  background-color: skyblue;
+  color:white;
+}
+.heidi_2:hover{
+  background-color: skyblue;
+  color:white;
+}
+.heidi_2:active{
+  background-color: skyblue;
+  color:white;
+}
+.heidi_2{
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 550;
+  color:darkturquoise;
+}
+
+.my_dropbtn {
+  background-color:whitesmoke;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 550;
+  color: darkslategrey;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.my_dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 550;
+  color: darkslategrey;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.my_dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  color: darkslategrey;
+}
+
+/* Links inside the dropdown */
+.my_dropdown-content Link {
+  color: black;
+  padding: 8px 25px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.my_dropdown-content Link:hover {
+  color:darkturquoise;
+}
+
+
+/* Show the dropdown menu on hover */
+.my_dropdown:hover .my_dropdown-content {
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.my_dropdown:hover .my_dropbtn {
+  background-color:gray;
+  color:darkturquoise;
+}
+
+.myLists li{
+  list-style-type: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 18px;
+  color:darkslategrey;
+  text-decoration: none;
+  
+}
+.myLists Link{
+  text-decoration: none;
+  
+}
+.thelinks {
+  list-style-type: none;
+  margin: 0px 0px 30px 0px;
+  font-weight: 520;
+}
+.link {
+  color: darkslategrey;
+  list-style-type: none;
+  font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.link:hover {
+   color: darkturquoise;
+   text-decoration: none;
+}
+.myH2{
+  color: wheat;
+  padding: 8px 0 0 0;
+  font-size: 40px;
+  text-align: center;
+  font-stretch: semi-expanded;
+  font-kerning: normal;
+  font-weight:bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

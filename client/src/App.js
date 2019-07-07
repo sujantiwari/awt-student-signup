@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.css';
+import React, {Component} from 'react';
+import { render } from 'react-dom';
 import './App.css';
+import Home from './components/Home';
+import Register from './components/Register';
+import About from './components/About';
+import Topic1 from './components/Topic1';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import HorBar from './components/HorBar';
+import VertMenu1 from './components/VertMenu1';
+import MenuAppBar from './components/MenuAppBar';
+import Category1 from './components/Category1';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state={
+    fields: {},
+  };
+
+  onSubmit = (fields) =>{
+    this.setState({fields});
+  };
+  render() {
+    return (
+
+      <Router>
+      <MenuAppBar/>
+      <div className="container">
+        <div className="row">
+          <div class="col-sm-2 mine">
+            <VertMenu1 />
+          </div>
+          <div class="col-sm-8">
+          <hr />
+          <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/category1' component={Category1} />
+              <Route exact path='/contact' component={Contact} />
+              <Route exact path='/topic1' component={Topic1} />
+              <Route exact path='/register' component={Register} />
+          </Switch>
+          </div>
+          <div class="col-sm-2 mine">
+            <HorBar/>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+      </Router>
+    );
+  }
 }
 
 export default App;
