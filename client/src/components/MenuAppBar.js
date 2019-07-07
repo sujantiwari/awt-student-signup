@@ -9,7 +9,7 @@ export class MenuAppBar extends React.Component{
       <div class="container bg-secondary navbar-dark">
         <div class="row">
           <div class="col-8 ">
-            <h2 className="text text-white text-center">AWT SS2019</h2>
+            <h2 className="myH2">AWT SS2019</h2>
           </div>
           <div class="col-4 ">
           <nav class="navbar navbar-expand-sm bg-secondary justify-content-center">

@@ -160,7 +160,6 @@ class FormContainer extends Component{
         />
         {/*Input for matric*/}
         <hr />
-        <h5>Add More Students:</h5>
         <Button
           action={this.handleFormSubmit}
           type={"primary"}

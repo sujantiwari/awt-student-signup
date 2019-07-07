@@ -17,12 +17,12 @@ class Home extends Component {
           apply!</p>
           <hr />
           <h3>Search by Categories</h3>
-          <ul className="text-dark">
-            <Link to={'/category1'} className="nav-link text-danger"> Category 1 </Link>
-            <li>Category 2</li>
-            <li>Category 3</li>
-            <li>Category 4</li>
-            <li>Category 5</li>
+          <ul className="thelinks">
+            <li><Link to={'/category1'} className="link" > Category 1 </Link></li>
+            <li><Link to={'/category2'} className="link" > Category 2 </Link></li>
+            <li><Link to={'/category3'} className="link" > Category 3 </Link></li>
+            <li><Link to={'/category4'} className="link" > Category 4 </Link></li>
+            <li><Link to={'/category5'} className="link" > Category 5 </Link></li>
           </ul>
 
         </div>

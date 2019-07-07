@@ -9,7 +9,7 @@ import Topic1 from './components/Topic1';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import HorBar from './components/HorBar';
-import VertMenu from './components/VertMenu';
+import VertMenu1 from './components/VertMenu1';
 import MenuAppBar from './components/MenuAppBar';
 import Category1 from './components/Category1';
 import 'bootstrap';
@@ -35,7 +35,7 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div class="col-sm-2 mine">
-            <VertMenu />
+            <VertMenu1 />
           </div>
           <div class="col-sm-8">
           <hr />

@@ -18,12 +18,12 @@ class Category1 extends Component {
         apply!</p>
         <hr />
         <h3>Topics under this Category</h3>
-        <ul className="text-dark">
-          <Link to={'/topic1'} className="nav-link text-danger"> Topic 1 </Link>
-          <Link to={'/category1'} className="nav-link text-danger"> Topic 1 </Link>
-          <Link to={'/category1'} className="nav-link text-danger"> Topic 1 </Link>
-          <Link to={'/category1'} className="nav-link text-danger"> Topic 1 </Link>
-          <Link to={'/category1'} className="nav-link text-danger"> Topic 1 </Link>
+        <ul className="thelinks">
+          <li><Link to={'/topic1'} className="link"> Topic 1 </Link></li>
+          <li><Link to={'/category1'} className="link"> Topic 2 </Link></li>
+          <li><Link to={'/category1'} className="link"> Topic 3 </Link></li>
+          <li><Link to={'/category1'} className="link"> Topic 4 </Link></li>
+          <li><Link to={'/category1'} className="link"> Topic 5 </Link></li>
         </ul>
         </div>
     );
