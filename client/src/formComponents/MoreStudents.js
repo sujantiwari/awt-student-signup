@@ -130,7 +130,7 @@ class MoreStudents extends Component{
           title={"Full Name: "}
           name={"name"}
           placeholder={"Enter your name"}
-          handleChange={this.handleInput}
+          handlechange={this.handleInput}
         /> {" "}
         {/*Name of Student*/}
         <Input className="form-control w-75"
@@ -138,14 +138,14 @@ class MoreStudents extends Component{
           title={"Email Address:"}
           name={"email"}
           placeholder={"Enter your email address"}
-          handleChange={this.handleInput}
+          handlechange={this.handleInput}
         />{" "} {/*Input for email*/}
         <Input className="form-control w-75"
           inputType={"text"}
           title={"Matric Number: "}
           name={"matric"}
           placeholder={"Enter your Matriculaton number"}
-          handleChange={this.handleInput}
+          handlechange={this.handleInput}
         /> {" "}<hr />
         <h6>Student 2:</h6>
           <Input className="form-control w-75"
@@ -153,7 +153,7 @@ class MoreStudents extends Component{
             title={"Full Name: "}
             name={"name"}
             placeholder={"Enter your name"}
-            handleChange={this.handleInput}
+            handlechange={this.handleInput}
           /> {" "}
           {/*Name of Student*/}
           <Input className="form-control w-75"
@@ -161,14 +161,14 @@ class MoreStudents extends Component{
             title={"Email Address:"}
             name={"email"}
             placeholder={"Enter your email address"}
-            handleChange={this.handleInput}
+            handlechange={this.handleInput}
           />{" "} {/*Input for email*/}
           <Input className="form-control w-75"
             inputType={"text"}
             title={"Matric Number: "}
             name={"matric"}
             placeholder={"Enter your Matriculaton number"}
-            handleChange={this.handleInput}
+            handlechange={this.handleInput}
           /> {" "}
       </form>
     );

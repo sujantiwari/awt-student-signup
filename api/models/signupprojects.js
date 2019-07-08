@@ -5,6 +5,12 @@ const signupProjects = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
+		SignupId: {
+			type: DataTypes.BIGINT
+		},
+		ProjectId: {
+			type: DataTypes.BIGINT
+		},
 		Priority: {
 			type: DataTypes.BIGINT
 		},

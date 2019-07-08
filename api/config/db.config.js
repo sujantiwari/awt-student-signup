@@ -41,13 +41,13 @@ var TokenVerification = require('../models/tokenverification')(sequelize, Sequel
 
 
 //Associations
+Project.belongsTo(Category, {
+	foreignKey: 'CategoryId'
+});
 Category.hasMany(Project, {
 	foreignKey: 'CategoryId'
 }, {
 	as: 'Projects'
-});
-Project.belongsTo(Category, {
-	foreignKey: 'CategoryId'
 });
 StudentGroup.hasMany(Student, {
 	foreignKey: 'GroupId'
@@ -68,20 +68,6 @@ Signup.belongsTo(Student, {
 });
 Signup.belongsTo(TokenVerification, {
 	foreignKey: 'VerificationTokenId'
-});
-Project.belongsToMany(Signup, {
-	through: 'SignupProjects',
-	unique: false,
-	foreignKey: 'SignupId',
-	otherKey: 'SignupId',
-	constraints:false
-});
-Signup.belongsToMany(Project, {
-	through: 'SignupProjects',
-	unique: false,
-	foreignKey: 'ProjectId',
-	otherKey: 'ProjectId',
-	constraints:false
 });
 db.Models = {
 	Student: Student,

@@ -8,7 +8,7 @@ const Select = (props) => {
         name={props.name}
         id={props.name}
         value={props.value}
-        onChange={props.handleChange}
+        onChange={props.handlechange}
         className="form-control"
       >
       <option value="" disabled>{props.placeholder}</option>

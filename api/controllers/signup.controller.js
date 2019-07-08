@@ -1,8 +1,48 @@
 module.exports = (db) => {
+	var mapSubmitData= (data)=>{
+		var students =[];
+		var projects =[];
+		var student1 = getStudent(data);
+		if(student1 != null){
+			students.push(student1);
+		}
+		if(data.members){
+			data.members.forEach(member =>{
+				students.push(getStudent(member));
+			});
+		}
+		if(data.FirstProject)
+		{
+			projects.push({ProjectId: data.FirstProject.value, Priority:1});
+		}
+		if(data.SecondProject)
+		{
+			projects.push({ProjectId: data.SecondProject.value, Priority:2});
+		}
+		if(data.ThirdProject)
+		{
+			projects.push({ProjectId: data.ThirdProject.value, Priority:3});
+		}
+		return {
+			Students: students,
+			Projects: projects
+		};
+	};
+	var getStudent = (data)=>{
+	return {
+		FirstName: data.FirstName,
+		MiddleName: data.MiddleName,
+		LastName: data.LastName,
+		EmailAddress: data.EmailAddress,
+		MatriculationNumber : data.MatriculationNumber
+	};
+	}
 	var randtoken = require('rand-token');
 	var addNewSignup = function (req, res) {
-		var students = req.body.Students;
-		var projectproirities = req.body.Projects;
+		console.log(req.body);
+		var data = mapSubmitData(req.body);
+		var students = data.Students;
+		var projectproirities = data.Projects;
 		var groupName = students.map(x => x.LastName).join('-');
 		db.Models.StudentGroup.addStudentGroup({
 			GroupName: groupName,
@@ -32,6 +72,7 @@ module.exports = (db) => {
 							GroupId: group.GroupId,
 							SignupStudentId: signingstudent.StudentId
 						}).then((signup) => {
+							console.log(signup);
 							var signupProjectAssociations = [];
 							projectproirities.forEach((project) => {
 								signupProjectAssociations.push({
@@ -41,8 +82,11 @@ module.exports = (db) => {
 									IsApproved: false
 								});
 							});
-							db.Models.SignupProjects.addMultipleSignupProjects(projectproirities).then(() => {
-								res.json(signup);
+							db.Models.SignupProjects.addMultipleSignupProjects(signupProjectAssociations).then(() => {
+								res.status(200).send({
+									success: 'true',
+									message: 'signup completed successfully'
+								});
 							});
 						});
 					});

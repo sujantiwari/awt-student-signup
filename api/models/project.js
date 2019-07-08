@@ -9,9 +9,12 @@ const project = (sequelize, DataTypes) => {
 			type: DataTypes.STRING
 		},
 		ProjectDescription: {
-			type: DataTypes.STRING
+			type: DataTypes.TEXT
 		},
 		ProjectRequirements: {
+			type: DataTypes.ARRAY(DataTypes.TEXT)
+		},
+		Tasks: {
 			type: DataTypes.ARRAY(DataTypes.TEXT)
 		},
 		ProjectSupervisorId: {
@@ -19,6 +22,13 @@ const project = (sequelize, DataTypes) => {
 		},
 		IsDeactivated: {
 			type: DataTypes.BOOLEAN
+		},
+		CategoryId: {
+		   type: DataTypes.INTEGER,
+		   references: {
+			  model: 'CategoryInfo', 
+			  key: 'CategoryId',
+		   }
 		}
 	});
 	Project.addNewProject = async project => {

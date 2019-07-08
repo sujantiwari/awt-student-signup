@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      categories: [],
+    };
+  }
+  componentDidMount() {
+    fetch('http://localhost:9000/category')
+      .then(response => response.json())
+      .then(data => this.setState({ categories: data }));
+  }
   render() {
+    const { categories } = this.state;
     return (
         <div>
           <h1>Student Projects and Theses</h1>
@@ -18,11 +31,11 @@ class Home extends Component {
           <hr />
           <h3>Search by Categories</h3>
           <ul className="thelinks">
-            <li><Link to={'/category1'} className="link" > Category 1 </Link></li>
-            <li><Link to={'/category2'} className="link" > Category 2 </Link></li>
-            <li><Link to={'/category3'} className="link" > Category 3 </Link></li>
-            <li><Link to={'/category4'} className="link" > Category 4 </Link></li>
-            <li><Link to={'/category5'} className="link" > Category 5 </Link></li>
+          {categories.map((category, index)  =>
+            <li key={index}>
+              <Link to={'/category/'+category.CategoryId} className="link" > {category.CategoryName} </Link>
+            </li>
+          )}
           </ul>
 
         </div>

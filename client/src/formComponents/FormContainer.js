@@ -3,26 +3,17 @@ import Input from './Input';
 import Button from './Button';
 import Select from 'react-select';
 
-const theTopics = [
-  {label: "Topic 1", value: 1},
-  {label: "Topic 2", value: 2},
-  {label: "Topic 3", value: 3},
-  {label: "Topic 4", value: 4},
-];
 
 class FormContainer extends Component{
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      newStudent: {
-        name: '',
-        email: '',
-        matric: '',
-        topics: '',
+      projects:[],
+      signupData: {
+        Students:[],
+        Projects:[]
       },
-
-      topicOptions: ['Topic1', 'Topic2', 'Topic3']
     };
     this.handleEmail = this.handleEmail.bind(this);
     this.handleMatric = this.handleMatric.bind(this);
@@ -31,17 +22,22 @@ class FormContainer extends Component{
     this.handleFullName = this.handleFullName.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
+  componentDidMount() {
+    fetch('http://localhost:9000/project/')
+      .then(response => response.json())
+      .then(data => this.setState({ projects: data }));
+  };
 
   handleFullName(e){
     let value = e.target.value;
     this.setState(
-      prevState => ({
-        newStudent:{
-          ...prevState.newStudent,
+      state => ({
+        signupData:{
+          ...state.signupData,
           name: value
         }
       }),
-      () => console.log(this.state.newStudent),
+      () => console.log(this.state.signupData),
     );
   }
 
@@ -49,12 +45,12 @@ class FormContainer extends Component{
     let value = e.target.value;
     this.setState(
       prevState => ({
-        newStudent:{
-          ...prevState.newStudent,
+        signupData:{
+          ...prevState.signupData,
           email: value
         }
       }),
-      () => console.log(this.state.newStudent),
+      () => console.log(this.state.signupData),
     );
   }
 
@@ -62,12 +58,12 @@ class FormContainer extends Component{
     let value = e.target.value;
     this.setState(
       prevState => ({
-        newStudent:{
-          ...prevState.newStudent,
+        signupData:{
+          ...prevState.signupData,
           matric: value
         }
       }),
-      () => console.log(this.state.newStudent),
+      () => console.log(this.state.signupData),
     );
   }
 
@@ -75,12 +71,12 @@ class FormContainer extends Component{
     let value = e.target.value;
     this.setState(
       prevState => ({
-        newStudent:{
-          ...prevState.newStudent,
+        signupData:{
+          ...prevState.signupData,
           topic: value
         }
       }),
-      () => console.log(this.state.newStudent),
+      () => console.log(this.state.signupData),
     );
   }
 
@@ -121,42 +117,43 @@ class FormContainer extends Component{
 
 
   render(){
+    const { projects } = this.state.projects.map(x=> x.ProjectName);
     return(
       <form onSubmit={this.handleFormSubmit}>
       <h3>Register</h3>
-        <Input className="form-control w-75"
-          inputType={"text"}
+        <Input className={"form-control w-75"}
+          type={"text"}
           title={"Full Name: "}
-          name={"name"}
+          name="name"
           placeholder={"Enter your name"}
-          handleChange={this.handleInput}
+          handlechange={this.handleInput}
         /> {" "}
         {/*Name of Student*/}
-        <Input className="form-control w-75"
-          inputType={"text"}
+        <Input className={"form-control w-75"}
+          type={"text"}
           title={"Email Address:"}
-          name={"email"}
+          name="email"
           placeholder={"Enter your email address"}
-          handleChange={this.handleInput}
+          onChange={this.handleInput}
         />{" "} {/*Input for email*/}
-        <Input className="form-control w-75"
-          inputType={"text"}
+        <Input className={"form-control w-75"}
+          type={"text"}
           title={"Matric Number: "}
           name={"matric"}
           placeholder={"Enter your Matriculaton number"}
-          handleChange={this.handleInput}
+          onChange={this.handleInput}
         /> {" "}
         <p>Select Topic 1</p>
-        <Select className="w-75"
-        options={theTopics}
+        <Select className={"w-75"}
+        options={projects}
         /><br />
         <p>Select Topic 2</p>
-        <Select className="w-75"
-        options={theTopics}
+        <Select className={"w-75"}
+        options={projects}
         /><br />
         <p>Select Topic 3</p>
-        <Select className="w-75"
-        options={theTopics}
+        <Select className={"w-75"}
+        options={projects}
         />
         {/*Input for matric*/}
         <hr />

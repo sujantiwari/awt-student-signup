@@ -27,6 +27,7 @@ const category = (sequelize, DataTypes) => {
 		return category;
 	};
 	Category.addNewCategory = async category => {
+		console.log(category);
 		return await Category.create(category);
 	};
 	Category.updateCategory = async category => {
@@ -45,7 +46,7 @@ const category = (sequelize, DataTypes) => {
 		});
 	};
 	Category.getCategoryProjects = async id => {
-		return await Category.findAll({
+		return await Category.findOne({
 			include: [{
 				model: Project
 			}],

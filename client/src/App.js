@@ -5,55 +5,45 @@ import './App.css';
 import Home from './components/Home';
 import Register from './components/Register';
 import About from './components/About';
-import Topic1 from './components/Topic1';
+import Project from './components/Project';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import HorBar from './components/HorBar';
-import VertMenu1 from './components/VertMenu1';
+import VertMenu from './components/VertMenu';
 import MenuAppBar from './components/MenuAppBar';
-import Category1 from './components/Category1';
+import Category from './components/Category';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route,withRouter } from 'react-router-dom';
 
 class App extends Component {
-  state={
-    fields: {},
-  };
-
-  onSubmit = (fields) =>{
-    this.setState({fields});
-  };
   render() {
     return (
-
       <Router>
-      <MenuAppBar/>
-      <div className="container">
-        <div className="row">
-          <div class="col-sm-2 mine">
-            <VertMenu1 />
-          </div>
-          <div class="col-sm-8">
-          <hr />
-          <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/category1' component={Category1} />
-              <Route exact path='/contact' component={Contact} />
-              <Route exact path='/topic1' component={Topic1} />
-              <Route exact path='/register' component={Register} />
-          </Switch>
-          </div>
-          <div class="col-sm-2 mine">
-            <HorBar/>
+        <MenuAppBar/>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-2 mine">
+              <VertMenu />
+            </div>
+            <div className="col-sm-8">
+            <hr />
+            <Switch>
+                <Route exact path='/' component={withRouter(Home)} />
+                <Route exact path='/about' component={withRouter(About)} />
+                <Route exact path='/category/:id' component={withRouter(Category)} />
+                <Route exact path='/contact' component={withRouter(Contact)} />
+                <Route exact path='/project/:id' component={withRouter(Project)} />
+                <Route exact path='/register' component={withRouter(Register)} />
+            </Switch>
+            </div>
+            <div className="col-sm-2 mine">
+              <HorBar/>
+            </div>
           </div>
         </div>
-      </div>
-      <Footer/>
+        <Footer/>
       </Router>
     );
   }
