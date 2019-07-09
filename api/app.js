@@ -11,6 +11,7 @@ var authRouter = require('./routes/auth.route');
 var usersRouter = require('./routes/users.route');
 var projectsRouter = require('./routes/projects.route');
 var categoryRouter = require('./routes/category.route');
+var supervisorRouter = require('./routes/supervisor.route');
 var signupRouter = require('./routes/signup.route');
 var middleware = require('./middleware/auth.middleware');
 var app = express();
@@ -35,6 +36,7 @@ app.use('/', indexRouter(router));
 app.use('/users', usersRouter(db, middleware, bcrypt));
 app.use('/category', categoryRouter(db));
 app.use('/project', projectsRouter(db));
+app.use('/supervisor', supervisorRouter(db));
 app.use('/signup', signupRouter(db, middleware));
 app.use('/auth', authRouter(db, bcrypt));
 

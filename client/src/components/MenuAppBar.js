@@ -20,11 +20,11 @@ export class MenuAppBar extends React.Component{
               <li className="nav-item">
                 <Link to={'/contact'} className="nav-link"> Contact </Link>
                 </li>
-              <li class="nav-item">
-                <Link to={'/adminpanel'} className="nav-link"> Contact </Link>
+              <li className="nav-item">
+                <Link to={'/adminpanel'} className="nav-link"> Projects </Link>
               </li>
-              <li class="nav-item">
-                <Link to={'/admin'} className="nav-link"> Admin </Link>
+              <li className="nav-item">
+                <Link to={'/login'} className="nav-link"> Admin </Link>
               </li>
             </ul>
           </nav>

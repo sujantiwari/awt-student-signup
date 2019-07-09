@@ -8,7 +8,6 @@ var submitForm = (values) => {
     body: JSON.stringify(values)
   }).then( response => response.json())
   .then(result =>{
-    console.log(result);
   if(result && result.success == "true"){
     window.alert('Application Submitted successfully. An email will be sent to your email address for verification');
     window.location = './';

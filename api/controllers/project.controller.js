@@ -1,6 +1,20 @@
 module.exports = (db) => {
+	const mapDataToProject = (input)=>{
+		return {
+			ProjectId: input.ProjectId,
+			ProjectName: input.ProjectName,
+			ProjectDescription: input.ProjectDescription,
+			ProjectRequirements : input.ProjectRequirements.map(r => r.Requirement),
+			Tasks : input.Tasks.map(t=>t.Task),
+			ProjectSupervisorId: input.Supervisor.value,
+			CategoryId: input.Category.value,
+			IsDeactivated: false
+		};
+	};
 	var addNewProject = function (req, res) {
-		db.Models.Project.addNewProject(req.body).then(
+		var input = req.body;
+		var project = mapDataToProject(input);
+		db.Models.Project.addNewProject(project).then(
 			(result) => {
 				res.json(result);
 			}
@@ -15,8 +29,11 @@ module.exports = (db) => {
 			(result) => res.json(result));
 	};
 	var updateProject = function (req, res) {
-		db.Models.Project.updateProject(req.body).then(
-			(result) => res.json(result));
+		var project = mapDataToProject(req.body);
+		db.Models.Project.updateProject(project).then(
+			(result) => {
+				res.json(result);
+			});
 	};
 	var deleteProject = function (req, res) {
 		db.Models.Project.deleteProject(req.params.id).then(

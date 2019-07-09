@@ -1,4 +1,4 @@
-const project = (sequelize, DataTypes) => {
+const project = (sequelize, DataTypes, Category) => {
 	const Project = sequelize.define('ProjectInfo', {
 		ProjectId: {
 			type: DataTypes.BIGINT,
@@ -38,7 +38,7 @@ const project = (sequelize, DataTypes) => {
 		let project = await Project.findOne({
 			where: {
 				ProjectId: id
-			},
+			}
 		});
 		return project;
 	};
@@ -58,7 +58,10 @@ const project = (sequelize, DataTypes) => {
 		});
 	};
 	Project.getAllProjects = async () => {
-		let projects = await Project.findAll();
+		let projects = await Project.findAll({
+			include: [{
+				model: Category
+			}]});
 		return projects;
 	};
 	return Project;

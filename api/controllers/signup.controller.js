@@ -39,7 +39,6 @@ module.exports = (db) => {
 	}
 	var randtoken = require('rand-token');
 	var addNewSignup = function (req, res) {
-		console.log(req.body);
 		var data = mapSubmitData(req.body);
 		var students = data.Students;
 		var projectproirities = data.Projects;
@@ -72,7 +71,6 @@ module.exports = (db) => {
 							GroupId: group.GroupId,
 							SignupStudentId: signingstudent.StudentId
 						}).then((signup) => {
-							console.log(signup);
 							var signupProjectAssociations = [];
 							projectproirities.forEach((project) => {
 								signupProjectAssociations.push({

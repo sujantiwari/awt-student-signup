@@ -27,7 +27,6 @@ const category = (sequelize, DataTypes) => {
 		return category;
 	};
 	Category.addNewCategory = async category => {
-		console.log(category);
 		return await Category.create(category);
 	};
 	Category.updateCategory = async category => {

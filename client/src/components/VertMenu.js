@@ -26,7 +26,7 @@ class VertMenu extends Component {
             <button className={"heidi_3"}><Link to={'/'} > Home </Link></button>
           {categories.map((category, index) =>
           <div key={index}>
-                <Link to={'/category/'+category.CategoryId} className="link" >{category.CategoryName}</Link>
+                <Link to={'/category/'+category.CategoryId} className="nav-link" >{category.CategoryName}</Link>
                 <br/>
           </div>
           )}

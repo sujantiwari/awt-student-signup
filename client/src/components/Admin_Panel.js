@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MaterialTable from 'material-table';
 
-export default function Admin_Panel() {
+export default function AdminPanel() {
   const [state, setState] = React.useState({
     columns: [
       { title: 'Topic', field: 'topic_name' },
@@ -44,7 +44,7 @@ export default function Admin_Panel() {
   });
 
   return (
-    <Admin_Panel
+    <AdminPanel
       title="Editable Example"
       columns={state.columns}
       data={state.data}

@@ -31,14 +31,15 @@ class Category extends Component {
   }
   render() {
     var {category}  = this.state;
-    console.log(category);
     return (
         <div>
         <h2>{category.CategoryName}</h2>
         <p className="text-justify" />
         <br />
         {category.CategoryDescription}
-        <h3>Projects in {category.CategoryName}</h3>
+        <br></br>
+        <br></br>
+        <h5>Projects in {category.CategoryName}</h5>
         <ul className="thelinks">
           {category.ProjectInfos.map((project, index) =>
           <li key={index} ><Link to={'/project/'+project.ProjectId} className="link"> {project.ProjectName} </Link></li>

@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
-import FormContainer from '../formComponents/FormContainer';
-import MoreStudents from '../formComponents/MoreStudents';
 import  Signup  from "./signupFormComponents/signup";
 class Register extends Component {
   render() {
