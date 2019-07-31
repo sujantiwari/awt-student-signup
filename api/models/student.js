@@ -24,6 +24,13 @@ const Student = (sequelize, DataTypes) => {
 		MatriculationNumber: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		GroupId: {
+		   type: DataTypes.INTEGER,
+		   references: {
+			  model: 'StudentGroupInfo', 
+			  key: 'GroupId',
+		   }
 		}
 	});
 	Student.addStudent = async student => {

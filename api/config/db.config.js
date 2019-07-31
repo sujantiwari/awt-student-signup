@@ -30,24 +30,26 @@ const db = {};
 
 db.sequelize = sequelize;
 db.connect = connect;
-var Project = require('../models/project')(sequelize, Sequelize);
 var Category = require('../models/category')(sequelize, Sequelize);
+var Project = require('../models/project')(sequelize, Sequelize,Category);
 var Student = require('../models/student')(sequelize, Sequelize);
 var User = require('../models/user')(sequelize, Sequelize);
 var StudentGroup = require('../models/studentgroup')(sequelize, Sequelize);
 var signupprojects = require('../models/signupprojects')(sequelize, Sequelize);
 var Signup = require('../models/signup')(sequelize, Sequelize);
 var TokenVerification = require('../models/tokenverification')(sequelize, Sequelize);
+var Supervisor = require('../models/supervisor')(sequelize, Sequelize);
+var DataDeletionRequest = require('../models/datadeletionrequest')(sequelize, Sequelize);
 
 
 //Associations
+Project.belongsTo(Category, {
+	foreignKey: 'CategoryId'
+});
 Category.hasMany(Project, {
 	foreignKey: 'CategoryId'
 }, {
 	as: 'Projects'
-});
-Project.belongsTo(Category, {
-	foreignKey: 'CategoryId'
 });
 StudentGroup.hasMany(Student, {
 	foreignKey: 'GroupId'
@@ -69,20 +71,6 @@ Signup.belongsTo(Student, {
 Signup.belongsTo(TokenVerification, {
 	foreignKey: 'VerificationTokenId'
 });
-Project.belongsToMany(Signup, {
-	through: 'SignupProjects',
-	unique: false,
-	foreignKey: 'SignupId',
-	otherKey: 'SignupId',
-	constraints:false
-});
-Signup.belongsToMany(Project, {
-	through: 'SignupProjects',
-	unique: false,
-	foreignKey: 'ProjectId',
-	otherKey: 'ProjectId',
-	constraints:false
-});
 db.Models = {
 	Student: Student,
 	User: User,
@@ -91,6 +79,8 @@ db.Models = {
 	Signup: Signup,
 	StudentGroup: StudentGroup,
 	SignupProjects: signupprojects,
-	TokenVerification: TokenVerification
+	Supervisor: Supervisor,
+	TokenVerification: TokenVerification,
+	DataDeletionRequest:DataDeletionRequest
 };
 module.exports = db;

@@ -11,10 +11,12 @@ var authRouter = require('./routes/auth.route');
 var usersRouter = require('./routes/users.route');
 var projectsRouter = require('./routes/projects.route');
 var categoryRouter = require('./routes/category.route');
+var supervisorRouter = require('./routes/supervisor.route');
 var signupRouter = require('./routes/signup.route');
 var middleware = require('./middleware/auth.middleware');
 var app = express();
 var db = require('./config/db.config');
+
 var router = express.Router();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,10 +35,11 @@ db.connect().then(() => {});
 app.options('*', cors()); // enable pre-flight
 app.use('/', indexRouter(router));
 app.use('/users', usersRouter(db, middleware, bcrypt));
-app.use('/category', categoryRouter(db));
-app.use('/project', projectsRouter(db));
+app.use('/category', categoryRouter(db, middleware));
+app.use('/project', projectsRouter(db, middleware));
+app.use('/supervisor', supervisorRouter(db, middleware));
 app.use('/signup', signupRouter(db, middleware));
-app.use('/auth', authRouter(db, bcrypt));
+app.use('/auth', authRouter(db, middleware, bcrypt));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

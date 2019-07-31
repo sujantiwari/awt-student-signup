@@ -5,6 +5,12 @@ const signupProjects = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
+		SignupId: {
+			type: DataTypes.BIGINT
+		},
+		ProjectId: {
+			type: DataTypes.BIGINT
+		},
 		Priority: {
 			type: DataTypes.BIGINT
 		},
@@ -26,12 +32,15 @@ const signupProjects = (sequelize, DataTypes) => {
 				}
 			});
 	};
-	SignupProjects.deleteSignupProject = async id => {
+	SignupProjects.deleteSignupProject = async signupId => {
 		return await SignupProjects.destroy({
 			where: {
-				Id: id
+				SignupId: signupId
 			}
 		});
+	};
+	SignupProjects.getAllSignupProjects=async () => {
+		return await SignupProjects.findAll({ raw: true});
 	};
 	return SignupProjects;
 };

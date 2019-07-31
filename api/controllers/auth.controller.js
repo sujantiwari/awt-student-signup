@@ -1,6 +1,13 @@
 module.exports = (db, bcrypt) => {
 	var jwt = require('jsonwebtoken');
 	var config = require('../config/auth.config');
+	var verify = function (req, res) {
+		console.log(200);
+		res.status(200).send({
+			success: 'true',
+			message: 'Verification Successful'
+		});
+	};
 	var login = function (req, res) {
 		var userName = req.body.UserName;
 		var password = req.body.Password;
@@ -14,30 +21,29 @@ module.exports = (db, bcrypt) => {
 				bcrypt.compare(password, user.Password).then(function (result) {
 					if (result == true) {
 						var token = jwt.sign({
-							username: user.UserName
-						},
-						config.secret, {
-							expiresIn: '24h'
-						});
+								Username: user.UserName,
+								UserRole: user.UserType
+							},
+							config.secret, {
+								expiresIn: '24h'
+							});
 						res.status(200).send({
-							success: 'false',
-							message: 'Authentication',
+							success: 'true',
+							message: 'Authentication Successful',
 							token: token
 						});
+					} else {
+						res.status(403).send({
+							success: 'false',
+							message: 'Incorrect username or password'
+						});
 					}
-					res.status(403).send({
-						success: 'false',
-						message: 'Incorrect username or password'
-					});
 				});
 			}
 		});
 	};
-	var logout = function (req, res) {
-		res.send('user logged out successfully!');
-	};
 	return {
 		login,
-		logout
+		verify
 	};
 };

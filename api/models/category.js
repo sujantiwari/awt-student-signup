@@ -45,7 +45,7 @@ const category = (sequelize, DataTypes) => {
 		});
 	};
 	Category.getCategoryProjects = async id => {
-		return await Category.findAll({
+		return await Category.findOne({
 			include: [{
 				model: Project
 			}],

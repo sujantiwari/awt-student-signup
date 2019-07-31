@@ -1,9 +1,8 @@
 module.exports = (db, bcrypt) => {
-	const saltRounds = 20;
 	var addNewUser = function (req, res) {
 		var user = req.body;
-		bcrypt.genSalt(saltRounds).then((err, salt) => {
-			bcrypt.hash(user.Password, salt).then((err, hash) => {
+		bcrypt.genSalt().then((salt,err ) => {
+			bcrypt.hash(user.Password, salt).then((hash,err) => {
 				user.Password = hash;
 				user.CreatedOn = new Date();
 				user.IsDeactivated = false;

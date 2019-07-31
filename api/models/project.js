@@ -1,4 +1,4 @@
-const project = (sequelize, DataTypes) => {
+const project = (sequelize, DataTypes, Category) => {
 	const Project = sequelize.define('ProjectInfo', {
 		ProjectId: {
 			type: DataTypes.BIGINT,
@@ -9,9 +9,12 @@ const project = (sequelize, DataTypes) => {
 			type: DataTypes.STRING
 		},
 		ProjectDescription: {
-			type: DataTypes.STRING
+			type: DataTypes.TEXT
 		},
 		ProjectRequirements: {
+			type: DataTypes.ARRAY(DataTypes.TEXT)
+		},
+		Tasks: {
 			type: DataTypes.ARRAY(DataTypes.TEXT)
 		},
 		ProjectSupervisorId: {
@@ -19,6 +22,13 @@ const project = (sequelize, DataTypes) => {
 		},
 		IsDeactivated: {
 			type: DataTypes.BOOLEAN
+		},
+		CategoryId: {
+		   type: DataTypes.INTEGER,
+		   references: {
+			  model: 'CategoryInfo', 
+			  key: 'CategoryId',
+		   }
 		}
 	});
 	Project.addNewProject = async project => {
@@ -28,7 +38,7 @@ const project = (sequelize, DataTypes) => {
 		let project = await Project.findOne({
 			where: {
 				ProjectId: id
-			},
+			}
 		});
 		return project;
 	};
@@ -48,7 +58,10 @@ const project = (sequelize, DataTypes) => {
 		});
 	};
 	Project.getAllProjects = async () => {
-		let projects = await Project.findAll();
+		let projects = await Project.findAll({
+			include: [{
+				model: Category
+			}]});
 		return projects;
 	};
 	return Project;
