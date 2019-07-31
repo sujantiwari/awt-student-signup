@@ -1,7 +1,6 @@
 # awt-student-signup
 
-#steps to run the project
-## Running locally
+## Steps for Running locally
 
 ##### Prerequisites
 - Node 6.x
