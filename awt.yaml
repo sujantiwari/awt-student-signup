@@ -1,0 +1,723 @@
+swagger: "2.0"
+info:
+  description: "Api definition for student project signup"
+  version: "1.0.0"
+  title: "Student Project Signup"
+  contact:
+    email: "sujan.tiwari@campus.tu-berlin.de"
+host: "none"
+basePath: "/v2"
+tags:
+- name: "project"
+  description: "Operations on projects "
+- name: "category"
+  description: "Operations on categories"
+- name: "users"
+  description: "Operations on user"
+- name: "signup"
+  description: "Operations on studentsignup"
+- name: "supervisor"
+  description: "Operations on supervisor"
+schemes:
+- "https"
+- "http"
+paths:
+  /project:
+    post:
+      tags:
+      - "project"
+      summary: "Add a new project"
+      description: ""
+      operationId: "addProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Project object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Project"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "project"
+      summary: "Update an existing project"
+      description: ""
+      operationId: "getAllProjects"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful"
+    put:
+      tags:
+      - "project"
+      summary: "Update an existing project"
+      description: ""
+      operationId: "updateProject"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Project object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Project"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+  /project/{id}:
+    get:
+      tags:
+      - "project"
+      summary: "Find project by ID"
+      description: "Returns a single project"
+      operationId: "getProjectById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of project to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Project"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "project not found"
+    delete:
+      tags:
+      - "project"
+      summary: "Deletes a project"
+      description: ""
+      operationId: "deleteProject"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Project id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Project not found"
+      security:
+      - api_key: []
+  /category:
+    get:
+      tags:
+      - "category"
+      summary: "Get all categories"
+      description: ""
+      operationId: "getallCategories"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful"
+    post:
+      tags:
+      - "category"
+      summary: "Add a new category"
+      description: ""
+      operationId: "addCategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Category object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+    put:
+      tags:
+      - "category"
+      summary: "Update an existing category"
+      description: ""
+      operationId: "updateCategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Project object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+  /category/{id}:
+    get:
+      tags:
+      - "category"
+      summary: "Find category by ID"
+      description: "Returns a single category"
+      operationId: "getCategoryById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of category to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Category"
+        404:
+          description: "category not found"
+    delete:
+      tags:
+      - "category"
+      summary: "Deletes a category"
+      description: ""
+      operationId: "deleteCategory"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Category id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        404:
+          description: "Category not found"
+      security:
+      - api_key: []
+  /category/{id}/projects:
+    get:
+      tags:
+      - "category"
+      summary: "Find category  projects by ID"
+      description: "Returns a single category's project "
+      operationId: "getCategoryProjectById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of category to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CategoryProjects"
+        404:
+          description: "category not found"
+  /users:
+    post:
+      tags:
+      - "users"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "users"
+      summary: "Get all users"
+      description: "This can only be done by the logged in user."
+      operationId: "GetAllUsers"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - api_key: []
+  /user/{username}:
+    get:
+      tags:
+      - "users"
+      summary: "Get user by user name"
+      description: ""
+      operationId: "getUserByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be fetched. Use user1 for testing. "
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid username supplied"
+        404:
+          description: "User not found"
+      security:
+      - api_key: []
+    put:
+      tags:
+      - "users"
+      summary: "Updated user"
+      description: "Updates an existing user."
+      operationId: "updateUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        400:
+          description: "Invalid user supplied"
+        404:
+          description: "User not found"
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - "users"
+      summary: "Delete user"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        400:
+          description: "Invalid username supplied"
+        404:
+          description: "User not found"
+      security:
+      - api_key: []
+  /signup:
+    post:
+      tags:
+      - "signup"
+      summary: "Create student signup"
+      operationId: "Createstudentsignup"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/SignupInput"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      tags:
+      - "signup"
+      summary: "Get all signups"
+      description: "This can only be done by the logged in user."
+      operationId: "GetAllSignups"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - api_key: []
+  /signup/verify:
+    delete:
+      tags:
+      - "signup"
+      summary: "verifies student data deletion request and deletes the data"
+      description: "This can only be done by the logged in user."
+      operationId: "verifyAndDelete"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The token that needs to be verified for deleting student data"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            token:
+              type: "string"
+      responses:
+        404:
+          description: "Not found"
+  /signup/delete/{id}:
+    delete:
+      tags:
+      - "signup"
+      summary: "verifies student data deletion request and deletes the data"
+      description: "This can only be done by the logged in user."
+      operationId: "DeleteSignup"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id of signup to delete "
+        required: true
+        type: "string"
+      responses:
+        404:
+          description: "Not found"
+      security:
+      - api_key: []
+  /signup/{id}:
+    get:
+      tags:
+      - "signup"
+      summary: "get signup details"
+      operationId: "GetSignupdetail"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "signup id"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - api_key: []
+  /signup/all/report:
+    get:
+      tags:
+      - "signup"
+      summary: "get signup table"
+      operationId: "GetSignupTable"
+      produces:
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - api_key: []
+  /signup/all/report/file:
+    get:
+      tags:
+      - "signup"
+      summary: "get signup table"
+      operationId: "GetSignupCSV"
+      produces:
+      - "application/csv"
+      responses:
+        200:
+          description: "successful operation"
+      security:
+      - api_key: []
+  
+  /supervisor:
+    post:
+      tags:
+      - "supervisor"
+      summary: "Add a new supervisor"
+      description: ""
+      operationId: "addSupervisor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Supervisor object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Supervisor"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "supervisor"
+      summary: "Update an existing Supervisor"
+      description: ""
+      operationId: "getAllSupervisors"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful"
+    put:
+      tags:
+      - "supervisor"
+      summary: "Update an existing Supervisor"
+      description: ""
+      operationId: "updateSupervisor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Supervisor object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Supervisor"
+      responses:
+        200:
+          description: "Successful"
+      security:
+      - api_key: []
+  /supervisor/{id}:
+    get:
+      tags:
+      - "supervisor"
+      summary: "Find Supervisor by ID"
+      description: "Returns a single Supervisor"
+      operationId: "getSupervisorById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of Supervisor to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Supervisor"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Supervisor not found"
+    delete:
+      tags:
+      - "supervisor"
+      summary: "Deletes a Supervisor"
+      description: ""
+      operationId: "deleteSupervisor"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Supervisor id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Supervisor not found"
+      security:
+      - api_key: []
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-auth-token"
+    in: "header"
+definitions:
+  Category:
+    type: "object"
+    properties:
+      CategoryId:
+        type: "integer"
+        format: "int64"
+      CategoryName:
+        type: "string"
+      CategoryDescription:
+        type: "string"
+  CategoryProjects:
+    type: "object"
+    properties:
+      CategoryId:
+        type: "integer"
+        format: "int64"
+      CategoryName:
+        type: "string"
+      CategoryDescription:
+        type: "string"
+      Projects:
+        type: "array"
+        items:
+          $ref: "#/definitions/Project"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      middlename:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      isdeactivated:
+        type: "boolean"
+        format: "bool"
+        description: "User Status"
+  Project:
+    type: "object"
+    properties:
+      ProjectId:
+        type: "integer"
+        format: "int64"
+      ProjectName:
+        type: "string"
+      ProjectDescription:
+        type: "string"
+      ProjectRequirements:
+        type: "array"
+        items:
+          type: "string"
+      Tasks:
+        type: "array"
+        items:
+          type: "string"
+      Supervisor:
+        type: "string"
+      Category:
+        type: "string"
+      IsDeactivated:
+        type: "boolean"
+        format: "bool"
+        description: "project activation status"
+  SignupInput:
+    type: "object"
+    properties:
+      FirstName:
+        type: "string"
+      MiddleName:
+        type: "string"
+      LastName:
+        type: "string"
+      EmailAddress:
+        type: "array"
+        items:
+          type: "string"
+      members:
+        type: "array"
+        items:
+          $ref: "#/definitions/StudentInput"
+      FirstProject:
+        $ref:  "#/definitions/ProjectInput"
+      SecondProject:
+        $ref:  "#/definitions/ProjectInput"
+      ThirdProject:
+        $ref:  "#/definitions/ProjectInput"
+          
+  StudentInput:
+    type: "object"
+    properties:
+      FirstName:
+        type: "string"
+      MiddleName:
+        type: "string"
+      LastName:
+        type: "string"
+      EmailAddress:
+        type: "array"
+        items:
+          type: "string"
+          
+  ProjectInput:
+    type: "object"
+    properties:
+      ProjectId:
+        type: "integer"
+        format: "int64"
+      Priority:
+        type: "integer"
+        format: "int64"
+          
+  Supervisor:
+    type: "object"
+    properties:
+      ProjectId:
+        type: "integer"
+        format: "int64"
+      Priority:
+        type: "integer"
+        format: "int64"
+      
+      
