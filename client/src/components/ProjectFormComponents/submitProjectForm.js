@@ -4,6 +4,7 @@ var submitForm = (values,method) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'x-auth-token': localStorage.getItem("x-auth-token")
     },
     body: JSON.stringify(values)
   }).then( response => response.json())

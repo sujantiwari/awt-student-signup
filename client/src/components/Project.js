@@ -29,7 +29,7 @@ class Project extends Component {
     const {project } = this.state;
     return (
         <div className="container">
-        <h4>{project.ProjectName}</h4>
+        <h4>{project.ProjectName} </h4>
         <br />
         <h5>Description</h5>
         <p className="text-justify">
@@ -51,7 +51,7 @@ class Project extends Component {
         <h5>Supervisor: {project.ProjectSupervisorId}</h5>
         <hr />
         <div className=" col text-center">
-          <Link to={'/register'} className="nav-link text-danger btn btn-info heraw"> Register </Link>
+          <Link to={'/register'} className="nav-link btn btn-info heraw"> Register </Link>
         </div>
       </div>
 

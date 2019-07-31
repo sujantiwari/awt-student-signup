@@ -1,4 +1,4 @@
-module.exports = (db) => {
+module.exports = (db, middleware) => {
 	var express = require('express');
 	var router = express.Router();
 	var supervisorController = require('../controllers/supervisor.controller')(db);

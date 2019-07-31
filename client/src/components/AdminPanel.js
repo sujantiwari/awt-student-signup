@@ -35,14 +35,23 @@ handleDelete (e){
   e.preventDefault();
   if (window.confirm("The project will be deleted. Are you sure?")) { 
     fetch('http://localhost:9000/project/'+e.target.value, {
+      headers: {
+        'x-auth-token': localStorage.getItem("x-auth-token")
+      },    
       method: 'DELETE'
     }).then( response => response.json())
     .then(result =>{
     if(result)
     {
+      if(result.message && result.success == false)
+      {
+        window.alert('An error has occured. Please try again later.');
+      }
+      else{
       var message = 'Project deleted successfully';
       window.alert(message);
       window.location.reload();
+      }
     }
     else{
       window.alert('An error has occured. Please try again later.');
@@ -51,9 +60,18 @@ handleDelete (e){
   }
 }
   componentDidMount() {
-    fetch('http://localhost:9000/project')
+    fetch('http://localhost:9000/project', {
+      headers: {
+        'x-auth-token': localStorage.getItem("x-auth-token")
+      }
+    })
       .then(response => response.json())
       .then(data => {
+        if(data.message && data.success == false)
+        {
+            window.location = '/login';
+        }
+        else {
         data.forEach(project=>{
           if(project.ProjectDescription && project.ProjectDescription.length >50)
             project.Description = project.ProjectDescription.substring(0, 47) +'...';
@@ -71,6 +89,7 @@ handleDelete (e){
               project.Skill = skills;
         });
         this.setState({ projects: data });
+      }
   });
   }
   render() {
@@ -108,9 +127,10 @@ handleDelete (e){
         </TableBody>
       </Table>
       <hr />
-      <div align="center"><button><Link to={'/projectEdit'} className="link"> Add New Project </Link></button>
-            &nbsp;&nbsp;<button>
-            <Link to={'/main_admin_panel'} className="link"> View Students </Link></button>
+      <div align="center">
+        <Link to={'/projectEdit'} className="btn btn-primary"> Add New Project </Link>
+            &nbsp;&nbsp;
+        <Link to={'/studentprojects'} className="btn btn-primary"> View Students </Link>
     </div>
     </Paper>
   );

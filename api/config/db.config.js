@@ -39,6 +39,7 @@ var signupprojects = require('../models/signupprojects')(sequelize, Sequelize);
 var Signup = require('../models/signup')(sequelize, Sequelize);
 var TokenVerification = require('../models/tokenverification')(sequelize, Sequelize);
 var Supervisor = require('../models/supervisor')(sequelize, Sequelize);
+var DataDeletionRequest = require('../models/datadeletionrequest')(sequelize, Sequelize);
 
 
 //Associations
@@ -79,6 +80,7 @@ db.Models = {
 	StudentGroup: StudentGroup,
 	SignupProjects: signupprojects,
 	Supervisor: Supervisor,
-	TokenVerification: TokenVerification
+	TokenVerification: TokenVerification,
+	DataDeletionRequest:DataDeletionRequest
 };
 module.exports = db;

@@ -32,12 +32,15 @@ const signupProjects = (sequelize, DataTypes) => {
 				}
 			});
 	};
-	SignupProjects.deleteSignupProject = async id => {
+	SignupProjects.deleteSignupProject = async signupId => {
 		return await SignupProjects.destroy({
 			where: {
-				Id: id
+				SignupId: signupId
 			}
 		});
+	};
+	SignupProjects.getAllSignupProjects=async () => {
+		return await SignupProjects.findAll({ raw: true});
 	};
 	return SignupProjects;
 };

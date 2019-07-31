@@ -1,4 +1,4 @@
-const studentGroup = (sequelize, DataTypes) => {
+const studentGroup = (sequelize, DataTypes, Student) => {
 	const StudentGroup = sequelize.define('StudentGroupInfo', {
 		GroupId: {
 			type: DataTypes.BIGINT,
@@ -20,6 +20,9 @@ const studentGroup = (sequelize, DataTypes) => {
 			where: {
 				GroupId: id
 			},
+			include: [{
+				model: Student
+			}]
 		});
 		
 	};
@@ -39,7 +42,11 @@ const studentGroup = (sequelize, DataTypes) => {
 		});
 	};
 	StudentGroup.getAllStudentGroups = async () => {
-		return await StudentGroup.findAll();
+		return await StudentGroup.findAll({
+			include: [{
+				model: Student
+			}]
+		});
 		
 	};
 	return StudentGroup;

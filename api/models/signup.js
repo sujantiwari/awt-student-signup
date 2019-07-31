@@ -25,8 +25,9 @@ const signup = (sequelize, DataTypes) => {
 	};
 	Signup.getSignup = async id => {
 		return await Signup.findOne({
+			where:{
 			SignupId: id
-		});
+		}});
 	};
 	Signup.addNewSignup = async signup => {
 		return await Signup.create(signup);
