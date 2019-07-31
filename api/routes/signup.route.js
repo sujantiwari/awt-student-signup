@@ -6,9 +6,9 @@ module.exports = (db,middleware) => {
 	router.post('/', signupController.addNewSignup);
 	router.delete('/', signupController.deleteRequest);
 	router.delete('/verify', signupController.verifyAndDeleteData);
-	router.delete('/delete/:id', signupController.deleteSignup);
+	router.delete('/delete/:id',middleware.Verify, signupController.deleteSignup);
 	router.get('/', signupController.getAllSignUpDetails);
-	router.get('/:id', signupController.getSignUpDetails);
+	router.get('/:id',middleware.Verify, signupController.getSignUpDetails);
 	router.get('/all/report',middleware.Verify, signupController.getSignupReport);
 	router.get('/all/report/file',middleware.Verify, signupController.getSignUpReportFile);
 	return router;
